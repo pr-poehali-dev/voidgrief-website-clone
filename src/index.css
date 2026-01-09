@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,35 +6,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 215 25% 15%;
+    --background: 120 20% 95%;
+    --foreground: 0 0% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 15%;
+    --card-foreground: 0 0% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 15%;
+    --popover-foreground: 0 0% 13%;
 
-    --primary: 199 89% 48%;
+    --primary: 120 100% 35%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 20% 95%;
-    --secondary-foreground: 215 25% 15%;
+    --secondary: 30 100% 50%;
+    --secondary-foreground: 0 0% 13%;
 
-    --muted: 215 20% 95%;
-    --muted-foreground: 215 15% 45%;
+    --muted: 120 15% 85%;
+    --muted-foreground: 0 0% 35%;
 
-    --accent: 199 89% 48%;
+    --accent: 0 70% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 20% 90%;
-    --input: 215 20% 90%;
-    --ring: 199 89% 48%;
+    --border: 0 0% 60%;
+    --input: 0 0% 85%;
+    --ring: 120 100% 35%;
 
-    --radius: 0.5rem;
+    --radius: 0.125rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -47,33 +47,33 @@
   }
 
   .dark {
-    --background: 215 30% 10%;
-    --foreground: 0 0% 98%;
+    --background: 240 10% 10%;
+    --foreground: 0 0% 95%;
 
-    --card: 215 25% 15%;
-    --card-foreground: 0 0% 98%;
+    --card: 240 8% 15%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 215 25% 15%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 240 8% 15%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 199 89% 48%;
+    --primary: 120 100% 40%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 25% 20%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 30 100% 50%;
+    --secondary-foreground: 0 0% 13%;
 
-    --muted: 215 25% 20%;
-    --muted-foreground: 215 15% 65%;
+    --muted: 240 8% 20%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 199 89% 48%;
+    --accent: 0 70% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 215 25% 20%;
-    --input: 215 25% 20%;
-    --ring: 199 89% 48%;
+    --border: 0 0% 30%;
+    --input: 240 8% 20%;
+    --ring: 120 100% 40%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -92,7 +92,12 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Press Start 2P", cursive;
+    font-size: 12px;
+    line-height: 1.8;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
 
   h1,
@@ -101,6 +106,30 @@
   h4,
   h5,
   h6 {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Press Start 2P", cursive;
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+    line-height: 1.6;
+  }
+
+  button {
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+    border: 3px solid hsl(var(--border));
+    transition: all 0.1s;
+  }
+
+  button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  .card {
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
+    border: 3px solid hsl(var(--border));
+  }
+
+  input,
+  textarea {
+    border: 3px solid hsl(var(--border));
+    box-shadow: inset 3px 3px 0px rgba(0, 0, 0, 0.2);
   }
 }

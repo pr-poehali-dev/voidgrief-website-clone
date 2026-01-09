@@ -53,20 +53,20 @@ const blogPosts: BlogPost[] = [
 
 const faqs = [
   {
-    question: 'Что такое VoidGrief?',
-    answer: 'VoidGrief — это платформа для обмена знаниями, идеями и опытом в области технологий, дизайна и разработки.'
+    question: 'Как зайти на сервер?',
+    answer: 'Открой Minecraft, нажми "Мультиплеер" и добавь IP сервера. Свяжись с нами в Telegram для получения IP.'
   },
   {
-    question: 'Как я могу внести вклад?',
-    answer: 'Вы можете писать статьи для блога, участвовать в обсуждениях и делиться своим опытом с сообществом.'
+    question: 'Какие режимы есть?',
+    answer: 'У нас есть выживание, PvP арена, мини-игры и строительный режим. Постоянно добавляем новые!'
   },
   {
-    question: 'Это бесплатно?',
-    answer: 'Да, VoidGrief полностью бесплатен для всех пользователей.'
+    question: 'Сервер бесплатный?',
+    answer: 'Да! Играть можно совершенно бесплатно. Привилегии дают дополнительные возможности.'
   },
   {
-    question: 'Как связаться с командой?',
-    answer: 'Используйте форму в разделе "Контакты" или напишите нам на почту team@voidgrief.com'
+    question: 'Как купить привилегию?',
+    answer: 'Нажми на кнопку "Купить" в разделе Донат. Ты перейдешь в Telegram для оформления покупки.'
   }
 ];
 
@@ -92,7 +92,7 @@ const donatePrivileges: DonatePrivilege[] = [
 ];
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState<'home' | 'about' | 'blog' | 'faq' | 'donate' | 'contact'>('home');
+  const [activeSection, setActiveSection] = useState<'home' | 'about' | 'faq' | 'donate' | 'contact'>('home');
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
   const [isDark, setIsDark] = useState(false);
 
@@ -148,14 +148,6 @@ const Index = () => {
                 О проекте
               </button>
               <button
-                onClick={() => setActiveSection('blog')}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  activeSection === 'blog' ? 'text-primary' : 'text-muted-foreground'
-                }`}
-              >
-                Блог
-              </button>
-              <button
                 onClick={() => setActiveSection('faq')}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
                   activeSection === 'faq' ? 'text-primary' : 'text-muted-foreground'
@@ -202,12 +194,12 @@ const Index = () => {
               <h2 className="text-5xl font-bold tracking-tight">
                 Добро пожаловать в VoidGrief
               </h2>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Платформа для обмена знаниями, идеями и опытом в мире технологий
+              <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Майнкрафт сервер для настоящих игроков
               </p>
               <div className="flex gap-4 justify-center pt-4">
-                <Button size="lg" onClick={() => setActiveSection('blog')}>
-                  Читать блог
+                <Button size="lg" onClick={() => setActiveSection('donate')}>
+                  Донат привилегии
                 </Button>
                 <Button size="lg" variant="outline" onClick={() => setActiveSection('about')}>
                   Узнать больше
@@ -215,125 +207,57 @@ const Index = () => {
               </div>
             </section>
 
-            <section className="space-y-8">
-              <div className="text-center space-y-2">
-                <h3 className="text-3xl font-bold">Последние статьи</h3>
-                <p className="text-muted-foreground">Свежие материалы из нашего блога</p>
-              </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {blogPosts.slice(0, 3).map((post) => (
-                  <Card key={post.id} className="hover:shadow-lg transition-shadow cursor-pointer">
-                    <CardHeader>
-                      <div className="flex items-center justify-between mb-2">
-                        <Badge variant="secondary">{post.category}</Badge>
-                        <span className="text-sm text-muted-foreground">{post.readTime}</span>
-                      </div>
-                      <CardTitle className="text-xl">{post.title}</CardTitle>
-                      <CardDescription>{post.date}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">{post.excerpt}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-              <div className="text-center">
-                <Button variant="outline" onClick={() => setActiveSection('blog')}>
-                  Все статьи
-                  <Icon name="ArrowRight" className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-            </section>
+
           </div>
         )}
 
         {activeSection === 'about' && (
           <div className="max-w-3xl mx-auto space-y-8 animate-fade-in">
-            <h2 className="text-4xl font-bold">О проекте VoidGrief</h2>
-            <div className="space-y-6 text-lg text-muted-foreground">
+            <h2 className="text-3xl font-bold leading-relaxed">О сервере VoidGrief</h2>
+            <div className="space-y-6 text-sm text-muted-foreground leading-relaxed">
               <p>
-                VoidGrief — это современная платформа, созданная для тех, кто стремится делиться знаниями 
-                и развиваться в мире технологий.
+                VoidGrief — это Minecraft сервер, созданный для настоящих игроков.
+                Здесь ты найдешь друзей и приключения.
               </p>
               <p>
-                Мы верим в силу открытого обмена информацией и создаём пространство, где каждый может 
-                найти вдохновение, учиться новому и делиться своим опытом.
+                Уникальные режимы игры, дружное сообщество и постоянные обновления.
+                Присоединяйся к нам прямо сейчас!
               </p>
               <div className="grid md:grid-cols-3 gap-6 pt-8">
                 <Card>
                   <CardHeader>
-                    <Icon name="BookOpen" className="h-8 w-8 text-primary mb-2" />
-                    <CardTitle>Обучение</CardTitle>
+                    <Icon name="Pickaxe" className="h-8 w-8 text-primary mb-2" />
+                    <CardTitle className="text-base leading-relaxed">Выживание</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      Качественные материалы по разработке, дизайну и технологиям
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      Классический режим с уникальными фичами
                     </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader>
                     <Icon name="Users" className="h-8 w-8 text-primary mb-2" />
-                    <CardTitle>Сообщество</CardTitle>
+                    <CardTitle className="text-base leading-relaxed">Сообщество</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      Обмен опытом с профессионалами и единомышленниками
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      Дружное комьюнити и помощь новичкам
                     </p>
                   </CardContent>
                 </Card>
                 <Card>
                   <CardHeader>
                     <Icon name="Zap" className="h-8 w-8 text-primary mb-2" />
-                    <CardTitle>Инновации</CardTitle>
+                    <CardTitle className="text-base leading-relaxed">Привилегии</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-muted-foreground">
-                      Следим за последними трендами и технологиями
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      Уникальные возможности для игроков
                     </p>
                   </CardContent>
                 </Card>
               </div>
-            </div>
-          </div>
-        )}
-
-        {activeSection === 'blog' && (
-          <div className="space-y-8 animate-fade-in">
-            <div className="text-center space-y-2">
-              <h2 className="text-4xl font-bold">Блог</h2>
-              <p className="text-muted-foreground">Статьи о технологиях, дизайне и разработке</p>
-            </div>
-
-            <div className="flex gap-2 justify-center flex-wrap">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? 'default' : 'outline'}
-                  onClick={() => setSelectedCategory(category)}
-                  className="capitalize"
-                >
-                  {category === 'all' ? 'Все' : category}
-                </Button>
-              ))}
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {filteredPosts.map((post) => (
-                <Card key={post.id} className="hover:shadow-lg transition-shadow cursor-pointer">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge variant="secondary">{post.category}</Badge>
-                      <span className="text-sm text-muted-foreground">{post.readTime}</span>
-                    </div>
-                    <CardTitle className="text-2xl">{post.title}</CardTitle>
-                    <CardDescription>{post.date}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{post.excerpt}</p>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         )}
@@ -397,7 +321,14 @@ const Index = () => {
                       )}
                       <div className="text-4xl font-bold">{privilege.price} ₽</div>
                     </div>
-                    <Button className="w-full" size="lg">
+                    <Button 
+                      className="w-full" 
+                      size="lg"
+                      onClick={() => {
+                        const message = `Привет! Хочу купить привилегию ${privilege.name} за ${privilege.price} ₽`;
+                        window.open(`https://t.me/voidgriefinfo?text=${encodeURIComponent(message)}`, '_blank');
+                      }}
+                    >
                       Купить
                       <Icon name="ShoppingCart" className="ml-2 h-4 w-4" />
                     </Button>
@@ -472,21 +403,26 @@ const Index = () => {
                     className="w-full px-3 py-2 border rounded-md bg-background resize-none"
                   />
                 </div>
-                <Button className="w-full">
-                  Отправить
+                <Button 
+                  className="w-full"
+                  onClick={() => {
+                    window.open('https://t.me/voidgriefinfo', '_blank');
+                  }}
+                >
+                  Написать в Telegram
                   <Icon name="Send" className="ml-2 h-4 w-4" />
                 </Button>
               </CardContent>
             </Card>
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 gap-4">
               <Card>
                 <CardHeader>
                   <Icon name="Mail" className="h-6 w-6 text-primary mb-2" />
                   <CardTitle className="text-base">Email</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">team@voidgrief.com</p>
+                  <p className="text-sm text-muted-foreground">maximannenkov367@gmail.com</p>
                 </CardContent>
               </Card>
               <Card>
@@ -495,16 +431,7 @@ const Index = () => {
                   <CardTitle className="text-base">Telegram</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">@voidgrief</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardHeader>
-                  <Icon name="Github" className="h-6 w-6 text-primary mb-2" />
-                  <CardTitle className="text-base">GitHub</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">github.com/voidgrief</p>
+                  <p className="text-sm text-muted-foreground">@voidgriefinfo</p>
                 </CardContent>
               </Card>
             </div>
