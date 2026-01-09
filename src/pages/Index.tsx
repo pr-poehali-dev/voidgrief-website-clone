@@ -70,8 +70,29 @@ const faqs = [
   }
 ];
 
+interface DonatePrivilege {
+  name: string;
+  price: number;
+  oldPrice?: number;
+  featured?: boolean;
+  color: string;
+}
+
+const donatePrivileges: DonatePrivilege[] = [
+  { name: 'HERO', price: 39, color: 'from-slate-500 to-slate-600' },
+  { name: 'TITAN', price: 89, color: 'from-blue-500 to-blue-600' },
+  { name: 'AVENGER', price: 129, color: 'from-green-500 to-green-600' },
+  { name: 'OVERLORD', price: 289, color: 'from-purple-500 to-purple-600' },
+  { name: 'MAGISTER', price: 589, color: 'from-pink-500 to-pink-600' },
+  { name: 'IMPERATOR', price: 999, color: 'from-amber-500 to-amber-600' },
+  { name: 'DRAGON', price: 1899, color: 'from-red-500 to-red-600' },
+  { name: 'HELPER', price: 6666, color: 'from-cyan-500 to-cyan-600' },
+  { name: 'GOD', price: 4444, oldPrice: 7777, featured: true, color: 'from-yellow-400 to-yellow-600' },
+  { name: 'PEGAS', price: 2126, oldPrice: 7777, featured: true, color: 'from-indigo-500 to-indigo-700' },
+];
+
 const Index = () => {
-  const [activeSection, setActiveSection] = useState<'home' | 'about' | 'blog' | 'faq' | 'contact'>('home');
+  const [activeSection, setActiveSection] = useState<'home' | 'about' | 'blog' | 'faq' | 'donate' | 'contact'>('home');
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
   const [isDark, setIsDark] = useState(false);
 
@@ -141,6 +162,14 @@ const Index = () => {
                 }`}
               >
                 FAQ
+              </button>
+              <button
+                onClick={() => setActiveSection('donate')}
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  activeSection === 'donate' ? 'text-primary' : 'text-muted-foreground'
+                }`}
+              >
+                Донат
               </button>
               <button
                 onClick={() => setActiveSection('contact')}
@@ -328,6 +357,81 @@ const Index = () => {
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        )}
+
+        {activeSection === 'donate' && (
+          <div className="space-y-8 animate-fade-in">
+            <div className="text-center space-y-2">
+              <h2 className="text-4xl font-bold">Донат привилегии</h2>
+              <p className="text-muted-foreground">Поддержите проект и получите эксклюзивные возможности</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {donatePrivileges.map((privilege) => (
+                <Card 
+                  key={privilege.name} 
+                  className={`relative overflow-hidden transition-all hover:scale-105 ${
+                    privilege.featured ? 'ring-2 ring-primary shadow-xl' : 'hover:shadow-lg'
+                  }`}
+                >
+                  {privilege.featured && (
+                    <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-bl-lg">
+                      ХИТ
+                    </div>
+                  )}
+                  <CardHeader className={`bg-gradient-to-br ${privilege.color} text-white pb-8`}>
+                    <CardTitle className="text-2xl font-bold text-center">{privilege.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="pt-6 space-y-4">
+                    <div className="text-center">
+                      {privilege.oldPrice && (
+                        <div className="flex items-center justify-center gap-2 mb-2">
+                          <span className="text-sm text-muted-foreground line-through">
+                            {privilege.oldPrice} ₽
+                          </span>
+                          <Badge variant="destructive" className="text-xs">
+                            СКИДКА
+                          </Badge>
+                        </div>
+                      )}
+                      <div className="text-4xl font-bold">{privilege.price} ₽</div>
+                    </div>
+                    <Button className="w-full" size="lg">
+                      Купить
+                      <Icon name="ShoppingCart" className="ml-2 h-4 w-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <Card className="max-w-3xl mx-auto">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Icon name="Info" className="h-5 w-5 text-primary" />
+                  Что дают привилегии?
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 text-muted-foreground">
+                <div className="flex items-start gap-3">
+                  <Icon name="Check" className="h-5 w-5 text-primary mt-0.5" />
+                  <p>Доступ к эксклюзивным материалам и статьям</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Icon name="Check" className="h-5 w-5 text-primary mt-0.5" />
+                  <p>Приоритетная поддержка от команды</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Icon name="Check" className="h-5 w-5 text-primary mt-0.5" />
+                  <p>Уникальный бейдж в профиле</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Icon name="Check" className="h-5 w-5 text-primary mt-0.5" />
+                  <p>Участие в закрытых мероприятиях сообщества</p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         )}
 
