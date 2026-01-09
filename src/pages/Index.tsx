@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -73,6 +73,29 @@ const faqs = [
 const Index = () => {
   const [activeSection, setActiveSection] = useState<'home' | 'about' | 'blog' | 'faq' | 'contact'>('home');
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldBeDark = saved === 'dark' || (!saved && prefersDark);
+    setIsDark(shouldBeDark);
+    if (shouldBeDark) {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+    if (newTheme) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
 
   const categories: Category[] = ['all', 'технологии', 'дизайн', 'разработка', 'новости'];
 
@@ -86,7 +109,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold">VoidGrief</h1>
-            <div className="flex gap-6">
+            <div className="flex items-center gap-6">
               <button
                 onClick={() => setActiveSection('home')}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
@@ -126,6 +149,17 @@ const Index = () => {
                 }`}
               >
                 Контакты
+              </button>
+              <button
+                onClick={toggleTheme}
+                className="ml-2 p-2 rounded-lg hover:bg-secondary transition-colors"
+                aria-label="Переключить тему"
+              >
+                {isDark ? (
+                  <Icon name="Sun" className="h-5 w-5" />
+                ) : (
+                  <Icon name="Moon" className="h-5 w-5" />
+                )}
               </button>
             </div>
           </div>
